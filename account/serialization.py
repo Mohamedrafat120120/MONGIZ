@@ -14,6 +14,7 @@ class registerationserialization(serializers.ModelSerializer):
             'first_name':{'required':True,},
             'last_name':{'required':True,},
             'password':{'required':True,'min_length':8},
+            'confirm_password':{'required':True,'min_length':8},
             'email':{'required':True,},
             'national_id':{'required':True,},
             'phone_number':{'required':True,},
@@ -93,8 +94,8 @@ class userpasswordresetserialize(serializers.ModelSerializer):
       user.save()
       return attrs
     except DjangoUnicodeDecodeError as identifier:
-      PasswordResetTokenGenerator().check_token(user, token)
-      raise serializers.ValidationError('Token is not Valid or Expired')
+       PasswordResetTokenGenerator().check_token(user, token)
+       raise serializers.ValidationError('Token is not Valid or Expired')
     
 class updateserialize(serializers.ModelSerializer):
     model=User

@@ -68,6 +68,8 @@ class changepassword(APIView):
     
     
 class forget_password(APIView):
+    permission_classes=[IsAuthenticated]
+
     def post(self,request):
         serialize=sendpasswordresetemailserialize(data=request.data)
         if serialize.is_valid(raise_exception=True):
