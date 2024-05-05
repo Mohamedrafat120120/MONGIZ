@@ -14,9 +14,8 @@ class registerationserialization(serializers.ModelSerializer):
             'first_name':{'required':True,},
             'last_name':{'required':True,},
             'password':{'required':True,'min_length':8},
-            # 'confirm_password':{'required':True,'min_length':8},
             'email':{'required':True,},
-            'national_id':{'required':True,},
+            'national_id':{'required':True,'min_length':15},
             'phone_number':{'required':True,},
             'birth_dt':{'required':True,},
         }

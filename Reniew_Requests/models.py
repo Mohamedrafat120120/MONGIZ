@@ -4,7 +4,7 @@ from account.models import User
 
 # Create your models here.
 class nationality(models.TextChoices):
-    Egypt="Egypt"
+    Egyptian="Egyptian"
     
 class blood(models.TextChoices):
     A_PLUS = "A+",
@@ -28,10 +28,8 @@ class Personal_ID_Card(models.Model):
     Recent_Personal_Image=models.ImageField(upload_to='Reniew_ID_Photo/%y/%m/%d')
     Request_Date=models.DateField(auto_now=True)
     Receive_Date=models.DateField()
-    def __str__(self) -> str:
-        return self.Sender
-    
-    
+    def __int__(self):
+        return self.pk
 class Personal_Driving_License(models.Model):
     Sender=models.ForeignKey(User,related_name='sender_driving_license',on_delete=models.CASCADE,default=None)
     Name_in_Arabic=models.CharField(max_length=255,default=None,blank=False,null=False)
@@ -47,5 +45,8 @@ class Personal_Driving_License(models.Model):
     Request_Date=models.DateField(auto_now=True)
     Receive_Date=models.DateField()
     
-    def __str__(self) -> str:
-        return self.Sender
+    def __int__(self):
+        return self.pk
+    
+    
+    
