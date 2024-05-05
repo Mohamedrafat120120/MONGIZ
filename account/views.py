@@ -62,7 +62,7 @@ class changepassword(APIView):
     permission_classes=[IsAuthenticated]
     def post(self,request):
         serialize=changepasswordserialize(data=request.data,context={'user': request.user})
-        if serialize.is_valid(raise_exception=True):
+        if serialize.is_valid():
             return Response({"msg":"password changed"},status=status.HTTP_200_OK)
         return Response(serialize.errors,status=status.HTTP_400_BAD_REQUEST)
     

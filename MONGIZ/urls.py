@@ -32,8 +32,9 @@ urlpatterns = [
     path('social_state',include('Social.urls')),
     path('',include('Home.urls')),
     path('',include('Work.urls')),
-    path('',include('Masseges.urls')),
+    path('',include('Tecnical_Report.urls')),
     path('',include('Certificates.urls')),
+    path('',include('Reniew_Requests.urls')),
 ]
 
 

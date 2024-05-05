@@ -4,7 +4,7 @@ import datetime
 
 # Create your models here.
 class MyUserManager(BaseUserManager):
-    def create_user(self,email, birth_dt,national_id,phone_number,first_name,last_name,password,confirm_password=None):
+    def create_user(self,email, birth_dt,national_id,phone_number,first_name,last_name, password=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -18,14 +18,13 @@ class MyUserManager(BaseUserManager):
             national_id=national_id,
             phone_number=phone_number,
             first_name=first_name,
-            last_name=last_name,
-            password=password
+            last_name=last_name
         )
-        user.set_password(confirm_password)
+        user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, birth_dt,national_id,phone_number,first_name,last_name,password,confirm_password=None):
+    def create_superuser(self, email, birth_dt,national_id,phone_number,first_name,last_name, password=None):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
@@ -33,7 +32,6 @@ class MyUserManager(BaseUserManager):
         user = self.create_user(
             email,
             password=password,
-            confirm_password= confirm_password,
             birth_dt=birth_dt,
             national_id=national_id,
             phone_number=phone_number,
@@ -55,7 +53,6 @@ class User(AbstractBaseUser):
     phone_number = models.CharField(
         max_length=11, unique=True, null=False, blank=False)
     password = models.CharField(max_length=200, null=False, blank=False)
-    confirm_password = models.CharField(max_length=200, null=False, blank=False)
     register_time = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -63,7 +60,7 @@ class User(AbstractBaseUser):
     objects = MyUserManager()
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ['first_name', 'last_name','national_id','phone_number','birth_dt','password']
+    REQUIRED_FIELDS = ['first_name', 'last_name','national_id','phone_number','birth_dt']
 
     def __str__(self):
         return self.email

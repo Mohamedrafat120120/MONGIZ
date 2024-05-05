@@ -49,8 +49,9 @@ INSTALLED_APPS = [
     'Official_Paper.apps.OfficialPaperConfig',
     'Social.apps.SocialConfig',
     'Work.apps.WorkConfig',
-    'Masseges.apps.MassegesConfig',
-    'Certificates.apps.CertificatesConfig'
+    'Tecnical_Report.apps.TecnicalReportConfig',
+    'Certificates.apps.CertificatesConfig',
+    'Reniew_Requests.apps.ReniewRequestsConfig'
 ]
 
 MIDDLEWARE = [
@@ -168,3 +169,6 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://127.0.0.1:3000",
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
