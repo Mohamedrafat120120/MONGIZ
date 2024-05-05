@@ -8,11 +8,9 @@ from rest_framework.response import Response
 
 
 
-@api_view(['POST'])
+@api_view(['GET'])
 def FBV_health(request):
-    if request.method == 'POST':
-        serializer = healthstate_serializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+    if request.method == 'GET':
+        health_state = health_state.all()
+        serializer = healthstate_serializer(health_state, many=True)
+        return Response(serializer.data)
