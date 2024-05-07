@@ -53,8 +53,8 @@ class login(APIView):
 
 class userprofile(APIView):
     permission_classes=[IsAuthenticated]
-    def get(self,request,format=None):
-        serialize=profileserializer(request.user)
+    def get(self,request):
+        serialize=profileserializer(request.user,many=False)
         return Response(serialize.data,status=status.HTTP_200_OK)
                 
  

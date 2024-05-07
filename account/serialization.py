@@ -15,7 +15,7 @@ class registerationserialization(serializers.ModelSerializer):
             'last_name':{'required':True,},
             'password':{'required':True,'min_length':8},
             'email':{'required':True,},
-            'national_id':{'required':True,'min_length':15},
+            'national_id':{'required':True,'min_length':13},
             'phone_number':{'required':True,},
             'birth_dt':{'required':True,},
         }
@@ -25,8 +25,9 @@ class loginserialize(serializers.ModelSerializer):
         fields=['national_id','password',]        
 
 class profileserializer(serializers.ModelSerializer):
-    model=User
-    fields='__all__'        
+    class Meta:
+      model=User
+      fields='__all__'        
 
 class changepasswordserialize(serializers.ModelSerializer):
     password=serializers.CharField(max_length=255,style={'input_type':'password'},write_only=True)    

@@ -34,6 +34,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_interface',
+    'colorfield',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -53,7 +55,7 @@ INSTALLED_APPS = [
     'Tecnical_Report.apps.TecnicalReportConfig',
     'Certificates.apps.CertificatesConfig',
     'Reniew_Requests.apps.ReniewRequestsConfig',
-    'Masseges.apps.MassegesConfig'
+    'Messages.apps.MessagesConfig'
 ]
 
 MIDDLEWARE = [
