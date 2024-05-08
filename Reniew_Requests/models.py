@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime,timedelta
+from datetime import datetime
 from account.models import User
 
 # Create your models here.
@@ -15,6 +15,11 @@ class blood(models.TextChoices):
     AB_MINUS = "AB-",  
     O_PLUS = "O+" , 
     O_MINUS = "O-",
+    
+def get_first_day_next_month():
+    today = datetime.date.today()
+    next_month = today.replace(day=1, month=today.month % 12 + 1, year=today.year + (today.month // 12))
+    return next_month    
     
 class Personal_ID_Card(models.Model):
     Sender=models.ForeignKey(User,related_name='sender_reniew_id',on_delete=models.CASCADE,default=None)

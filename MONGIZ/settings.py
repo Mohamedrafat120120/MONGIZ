@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     'Tecnical_Report.apps.TecnicalReportConfig',
     'Certificates.apps.CertificatesConfig',
     'Reniew_Requests.apps.ReniewRequestsConfig',
-    'Messages.apps.MessagesConfig'
+    'Messages.apps.MessagesConfig',
+    'Reports.apps.ReportsConfig'
 ]
 
 MIDDLEWARE = [

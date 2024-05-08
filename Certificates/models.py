@@ -1,5 +1,6 @@
 from django.db import models
 from  account.models import User
+import datetime
 # Create your models here.
 
 class Skills(models.TextChoices):
@@ -35,23 +36,44 @@ class Skills(models.TextChoices):
     Video_Editing= "Video Editing"
     Pr="Adobe Pr"
     
+class cities(models.TextChoices):   
+     Cairo='Cairo'
+     Giza='Giza'
+     Aswan='Aswan'
+     Alexandria='Alexandria'
+     Amarna_city='Amarna city'
+     Elephantine_city='Elephantine city'
+     Days_cairo_tour_packages='Days cairo tour packages'
+     Damietta='Damietta'
+     Luxor='Luxor'
+     Heliopolis_city='Heliopolis city'
+     Qena='Qena'
+     Zagazig='Zagazig'
+     Fayoum='Fayoum'
+     Minya='Minya'
+     Al_maḩallah_al_kubrá='Al maḩallah al kubrá'
+     Mansoura='Mansoura'
+     
+class state(models.TextChoices):   
+    Egypt='Egypt'  
+     
     
 class Personal_Info(models.Model):
     Full_Name=models.CharField(max_length=100,default=" ",null=False,blank=False)
     Email=models.EmailField(unique=True,default=" ")
     Profession=models.CharField(max_length=100,default=" ",null=False,blank=False)
     Address=models.CharField(max_length=100,default=" ",null=False,blank=False)
-    City=models.CharField(max_length=100,default=" ",null=False,blank=False)
-    state=models.CharField(max_length=100,default="Egypt",null=False,blank=False)
+    City=models.CharField(max_length=100,choices=cities.choices,default=" ",null=False,blank=False)
+    state=models.CharField(max_length=100,choices=state.choices,default="Egypt",null=False,blank=False)
     def __str__(self) -> str:
         return self.Email
     
     
 class Expereince(models.Model):
-       company=models.CharField(max_length=100,default=" ",null=False,blank=False)
+       Company=models.CharField(max_length=100,default=" ",null=False,blank=False)
        Employer=models.CharField(max_length=100,default=" ",null=False,blank=False)
        Role=models.CharField(max_length=100,default=" ",null=False,blank=False)
-       company_Address=models.CharField(max_length=100,default=" ",null=False,blank=False)
+       Company_Address=models.CharField(max_length=100,default=" ",null=False,blank=False)
        Start_Date=models.DateField(default=" ",null=False,blank=False)
        Finish_Date=models.DateField(default=" ",null=False,blank=False)
        Currently_work_here=models.BooleanField(default=False)
@@ -63,21 +85,22 @@ class Education(models.Model):
     School_Location=models.CharField(max_length=100,default=" ",null=False,blank=False) 
     Degree_Program=models.CharField(max_length=100,default=" ",null=False,blank=False)      
     Field_Of_Study=models.CharField(max_length=100,default=" ",null=False,blank=False)      
-    Graduation_Month_and_Year=models.DateField(default=" ",null=False,blank=False)
+    Graduation_Month_and_Year=models.DateField(default=datetime.date.today(),null=True)
       
           
-class Technical_Skill(models.Model):        
+class Technical_Skill(models.Model):      
      Skill1=models.CharField(max_length=50,choices=Skills.choices,unique=True)
      Skill2=models.CharField(max_length=50,choices=Skills.choices,unique=True)
      Skill3=models.CharField(max_length=50,choices=Skills.choices,unique=True)
      Skill4=models.CharField(max_length=50,choices=Skills.choices,unique=True)
      Skill5=models.CharField(max_length=50,choices=Skills.choices,unique=True)
+     
 class Contact_Info(models.Model):
       Phone_Number=models.CharField(max_length=11,default=" ")   
-      Linkedin_Profile_Link=models.URLField(max_length=100,default="https/",null=False,blank=False)    
-      Twitter_Profile_Link=models.URLField(max_length=100,default="https/",null=False,blank=False)    
-      GitHub_Profile_Link=models.URLField(max_length=100,default="https/",null=False,blank=False)    
-      Portfolio_Link=models.URLField(max_length=100,default="https/",null=False,blank=False) 
+      Linkedin_Profile_Link=models.URLField(max_length=100,default="https/",null=False,blank=False,unique=True)    
+      Twitter_Profile_Link=models.URLField(max_length=100,default="https/",null=False,blank=False,unique=True)    
+      GitHub_Profile_Link=models.URLField(max_length=100,default="https/",null=False,blank=False,unique=True)    
+      Portfolio_Link=models.URLField(max_length=100,default="https/",null=False,blank=False,unique=True) 
 
 
          
