@@ -12,5 +12,5 @@ from rest_framework.response import Response
 def FBV_health(request):
     if request.method == 'GET':
         health_state = health_state.all()
-        serializer = healthstate_serializer(health_state, many=True)
+        serializer = healthstate_serializer(health_state,many=True)
         return Response(serializer.data)

@@ -2,10 +2,13 @@ from django.shortcuts import render
 from .models import work_career
 from rest_framework.decorators import api_view
 from rest_framework import status
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import IsAuthenticated
 from Work.serializer import WorkSerializer
 from rest_framework.response import Response
 
 @api_view
+@permission_classes((IsAuthenticated))
 def FBV_work(request):
     if request.method == 'GET':
         work_career = work_career.all()

@@ -16,7 +16,7 @@ class Blood_type(models.TextChoices):
     O = 'O'
 
 class Home_page(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="user",null=True)
+    user=models.OneToOneField(User,on_delete=models.CASCADE,related_name="user",default=None)
     Name = models.CharField(max_length=200, default=None)
     Nationality = models.CharField(max_length=100, default=None)
     Marital_state = models.CharField(max_length=9, choices=MaritalState.choices, default=MaritalState.SINGLE)

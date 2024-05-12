@@ -15,14 +15,10 @@ class blood(models.TextChoices):
     AB_MINUS = "AB-",  
     O_PLUS = "O+" , 
     O_MINUS = "O-",
-    
-def get_first_day_next_month():
-    today = datetime.date.today()
-    next_month = today.replace(day=1, month=today.month % 12 + 1, year=today.year + (today.month // 12))
-    return next_month    
+      
     
 class Personal_ID_Card(models.Model):
-    Sender=models.ForeignKey(User,related_name='sender_reniew_id',on_delete=models.CASCADE,default=None)
+    Sender=models.OneToOneField(User,related_name='sender_reniew_id',on_delete=models.CASCADE,default=None)
     Full_Name=models.CharField(max_length=255,default=None,blank=False,null=False)
     Birth_dt=models.DateField(blank=False,null=False)
     Full_Address=models.CharField(max_length=255,default=None)
@@ -31,12 +27,12 @@ class Personal_ID_Card(models.Model):
     Marital_State=models.CharField(max_length=255,default=None,blank=False,null=False)
     Study_Field=models.CharField(max_length=255,default=None,blank=False,null=False)
     Recent_Personal_Image=models.ImageField(upload_to='Reniew_ID_Photo/%y/%m/%d')
-    Request_Date=models.DateField(auto_now=True)
+    Request_Date=models.DateField(auto_now_add=True)
     Receive_Date=models.DateField()
     def __int__(self):
         return self.pk
 class Personal_Driving_License(models.Model):
-    Sender=models.ForeignKey(User,related_name='sender_driving_license',on_delete=models.CASCADE,default=None)
+    Sender=models.OneToOneField(User,related_name='sender_driving_license',on_delete=models.CASCADE,default=None)
     Name_in_Arabic=models.CharField(max_length=255,default=None,blank=False,null=False)
     Name_in_English=models.CharField(max_length=255,blank=False,null=False)
     Full_Address=models.CharField(max_length=255,default=None)

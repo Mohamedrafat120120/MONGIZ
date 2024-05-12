@@ -11,6 +11,7 @@ from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 class report(APIView):
+    permission_classes=[IsAuthenticated]
     def post(self, request):
         data = request.data
         serializer = ReportSerialize(data=data)  
