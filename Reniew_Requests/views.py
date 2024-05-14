@@ -10,12 +10,12 @@ class personal_id_card(APIView):
     permission_classes=[IsAuthenticated]
     def post (self,request):
             data=request.data
-            user_id=request.user.id
-            user=get_object_or_404(User,pk=user_id)
+            # user_id=request.user.id
+            # user=get_object_or_404(User,pk=user_id)
             serialize=PersonalIDSerialization(data=data)
             if serialize.is_valid():
-                Sender=Personal_ID_Card.objects.create(user=user)
-                Sender.save()
+                # Sender=Personal_ID_Card.objects.create(user=user)
+                # Sender.save()
                 serialize.save()
                 return Response(serialize.data,status=status.HTTP_201_CREATED)
             else:

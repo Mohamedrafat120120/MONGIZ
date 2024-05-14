@@ -1,5 +1,8 @@
 from django.contrib import admin
 
 from .models import health_state , medical_history
-admin.site.register(health_state)
+class display_health(admin.ModelAdmin):
+    list_display=['name','id_number']
+    list_display_links=['name','id_number']
+admin.site.register(health_state,display_health)
 admin.site.register(medical_history)

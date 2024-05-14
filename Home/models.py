@@ -9,14 +9,18 @@ class MaritalState(models.TextChoices):
     WIDOWED = 'Widowed'
 
 class Blood_type(models.TextChoices):
-    A = 'A+'
-    a = 'A-'
-    B = 'B'
-    AB = 'AB'
-    O = 'O'
+    A_PLUS = "A+",
+    A_MINUS = "A-",
+    B_PLUS = "B+",
+    B_MINUS = "B-",
+    AB_PLUS = "AB+",
+    AB_MINUS = "AB-",  
+    O_PLUS = "O+" , 
+    O_MINUS = "O-",
 
 class Home_page(models.Model):
-    user=models.OneToOneField(User,on_delete=models.CASCADE,related_name="user",default=None)
+    User = models.OneToOneField(User, on_delete=models.CASCADE,default=None)
+    Id_Num=models.CharField(max_length=15,default=None,null=False,blank=False,primary_key=True)
     Name = models.CharField(max_length=200, default=None)
     Nationality = models.CharField(max_length=100, default=None)
     Marital_state = models.CharField(max_length=9, choices=MaritalState.choices, default=MaritalState.SINGLE)

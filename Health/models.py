@@ -1,4 +1,5 @@
 from django.db import models
+from account.models import User
 
 
 class Blood_type(models.TextChoices):
@@ -13,13 +14,14 @@ class Blood_type(models.TextChoices):
 
 
 class health_state (models.Model):
-    id_number = models.CharField(max_length=14, default=None)
+    user=models.OneToOneField(User,on_delete=models.CASCADE,default=None)
+    id_number = models.CharField(max_length=15, default=None,primary_key=True)
     name = models.CharField(max_length=200, default=None)
     Blood_quarter = models.CharField(max_length=3, choices=Blood_type.choices, default=None)
     health_problem = models.CharField(max_length=500, default=None)
 
-def __str__(self):
-    return f"{self.id_num}"
+    def __str__(self):
+      return self.name
 
 
 class medical_history (models.Model):

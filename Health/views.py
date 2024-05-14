@@ -1,16 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from .models import health_state,medical_history
-from django.http.response import JsonResponse
-from rest_framework.decorators import api_view
 from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
 from .serializer import healthstate_serializer, medicalhistory_serializer
 from rest_framework.response import Response
 
 
 
-@api_view(['GET'])
-def FBV_health(request):
-    if request.method == 'GET':
-        health_state = health_state.all()
-        serializer = healthstate_serializer(health_state,many=True)
-        return Response(serializer.data)
+class Health_State(APIView):
+    permission_classes=[IsAuthenticated]
+    def get(self,request,national_id):
+        data = get_object_or_404(health_state,pk=national_id)
+        serialize = healthstate_serializer(data)
+        return Response(serialize.data,status=status.HTTP_200_OK)
