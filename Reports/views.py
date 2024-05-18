@@ -1,16 +1,23 @@
-from rest_framework.decorators import api_view
+from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.decorators import permission_classes
+from rest_framework.views import APIView
 from Reports.serialization import ReportSerializer
 from rest_framework.response import Response
+from .models import *
 
-@api_view
-@permission_classes((IsAuthenticated,))
-def FBV_report(request):
-    if request.method == 'POST':
-        serializer = ReportSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+class Message(APIView):
+    permission_classes=[IsAuthenticated]
+    def post(self,request):
+        user=request.user
+        data=request.data
+        serialize = ReportSerializer(data)
+        if serialize.is_valid():
+          Sender =Report.objects.create(Sender=user) 
+          Sender.save()
+          serialize.save()
+          return Response(serialize.data,status=status.HTTP_200_OK)
+        else:
+            return Response(serialize.errors,status=status.HTTP_400_BAD_REQUEST)
+      
+    

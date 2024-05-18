@@ -10,7 +10,16 @@ from rest_framework.response import Response
 
 class Health_State(APIView):
     permission_classes=[IsAuthenticated]
-    def get(self,request,national_id):
-        data = get_object_or_404(health_state,pk=national_id)
+    def get(self,request):
+        user=request.user
+        data = get_object_or_404(health_state,User=user)
         serialize = healthstate_serializer(data)
+        return Response(serialize.data,status=status.HTTP_200_OK)
+    
+class medical_history(APIView):
+    permission_classes=[IsAuthenticated]
+    def get(self,request):
+        user=request.user
+        data = get_object_or_404(medical_history,User=user)
+        serialize = medicalhistory_serializer(data)
         return Response(serialize.data,status=status.HTTP_200_OK)

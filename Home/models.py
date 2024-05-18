@@ -20,8 +20,7 @@ class Blood_type(models.TextChoices):
 
 class Home_page(models.Model):
     User = models.OneToOneField(User, on_delete=models.CASCADE,default=None)
-    Id_Num=models.CharField(max_length=15,default=None,null=False,blank=False,primary_key=True)
-    Name = models.CharField(max_length=200, default=None)
+    Name=models.CharField(max_length=50,default=None,null=False,blank=False)
     Nationality = models.CharField(max_length=100, default=None)
     Marital_state = models.CharField(max_length=9, choices=MaritalState.choices, default=MaritalState.SINGLE)
     Blood_quarter = models.CharField(max_length=3,choices=Blood_type.choices ,default=None)

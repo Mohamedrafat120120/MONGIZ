@@ -10,8 +10,9 @@ from rest_framework_simplejwt import tokens
 
 class Home(APIView):
     permission_classes=[IsAuthenticated]
-    def get(self,request,national_id):
-        data = get_object_or_404(Home_page,pk=national_id)
+    def get(self,request):
+        user=request.user
+        data = get_object_or_404(Home_page,User=user)
         serialize = homeSerializer(data)
         return Response(serialize.data,status=status.HTTP_200_OK)
     

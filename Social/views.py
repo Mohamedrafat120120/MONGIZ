@@ -1,21 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from .models import social_state
-from rest_framework.decorators import api_view
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from .serializer import social_state_serializer
 from rest_framework.response import Response
 
 
-@api_view(['GET', 'POST'])
-def FBV_social(request):
-    if request.method == 'GET':
-        social_state = social_state.all()
-        serializer = social_state_serializer(social_state)
-        return Response(serializer.data)
-    elif request.method == 'POST':
-        serializer = social_state_serializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+class Social(APIView):
+    permission_classes=[IsAuthenticated]
+    def get(self,request):
+        user=request.user
+        data = get_object_or_404(social_state,User=user)
+        serialize = social_state_serializer(data)
+        return Response(serialize.data,status=status.HTTP_200_OK)
+  
 

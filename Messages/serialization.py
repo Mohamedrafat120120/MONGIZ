@@ -3,6 +3,6 @@ from .models import *
 
 
 class msg_serializer(serializers.ModelSerializer):
-    class meta:
+    class Meta:
         model = message
         fields = '__all__'

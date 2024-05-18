@@ -14,18 +14,17 @@ class Blood_type(models.TextChoices):
 
 
 class health_state (models.Model):
-    user=models.OneToOneField(User,on_delete=models.CASCADE,default=None)
-    id_number = models.CharField(max_length=15, default=None,primary_key=True)
-    name = models.CharField(max_length=200, default=None)
-    Blood_quarter = models.CharField(max_length=3, choices=Blood_type.choices, default=None)
-    health_problem = models.CharField(max_length=500, default=None)
+    User=models.OneToOneField(User,on_delete=models.CASCADE,default=None)
+    Name = models.CharField(max_length=200, default=None)
+    Blood_Quarter = models.CharField(max_length=3, choices=Blood_type.choices, default=None)
+    Health_Problem = models.CharField(max_length=500, default=None)
 
     def __str__(self):
-      return self.name
+      return self.Name
 
 
 class medical_history (models.Model):
-    chronic_diseases = models.CharField(max_length=100,default=None)
-    another_diseases = models.CharField(max_length=100, default=None)
+    Chronic_Diseases = models.CharField(max_length=100,default=None)
+    Another_Diseases = models.CharField(max_length=100, default=None)
 
 
