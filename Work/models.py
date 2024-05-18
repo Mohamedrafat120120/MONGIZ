@@ -1,10 +1,12 @@
 from django.db import models
+from account.models import User
 
 class work_career(models.Model):
+    Sender=models.OneToOneField(User,on_delete=models.CASCADE,default=None)
     Current_Jop = models.CharField(max_length=200, default=None)
     Campanies = models.TextField()
     Other = models.TextField(default=None)
 
-    # def __int__(self):
-    #   return self.pk
+    def __str__(self):
+      return self.Sender.first_name
     
