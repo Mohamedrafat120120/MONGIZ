@@ -1,13 +1,9 @@
 from rest_framework import serializers
-from Education.models import educational_state , certification
+from Education.models import educational_state 
 
 class educational_state_serializer(serializers.ModelSerializer):
-    class meta:
+    class Meta:
         model = educational_state 
         fields = '__all__'
     
 
-class certification_serializer(serializers.ModelSerializer):
-    class meta:
-        model = certification
-        fields = '__all__'

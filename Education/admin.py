@@ -1,6 +1,8 @@
 from django.contrib import admin
-from .models import educational_state, certification
+from .models import educational_state
+class display_education(admin.ModelAdmin):
+    list_display=['Name','User','Schools']
+    list_display_links=['Name','User','Schools']
+admin.site.register(educational_state,display_education)
 
-# Register your models here.
-admin.site.register(educational_state)
-admin.site.register(certification)
+

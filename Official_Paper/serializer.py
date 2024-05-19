@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from Official_Paper.models import papers
+from Official_Paper.models import paper
 
 class papersSerializer(serializers.ModelSerializer):
-    class meta:
-        model = papers
+    class Meta:
+        model = paper
         fields = '__all__'

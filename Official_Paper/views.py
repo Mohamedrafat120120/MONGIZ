@@ -1,14 +1,16 @@
-from django.shortcuts import render
-from Official_Paper.models import papers
-from rest_framework.decorators import api_view
+from django.shortcuts import get_object_or_404
+from Official_Paper.models import paper
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
 from rest_framework import status
 from Official_Paper.serializer import papersSerializer
 from rest_framework.response import Response
 
 
-@api_view([ 'GET'])
-def FBV_paper(request):
-    if request.method == 'GET':
-        papers = papers.all()
-        serializer = papersSerializer(papers)
-        return Response(serializer.data)
+class offcial_papers(APIView):
+       permission_classes=[IsAuthenticated]
+       def get(self,request):
+          user=request.user
+          Message =get_object_or_404(paper,User=user) 
+          serializer = papersSerializer(Message)
+          return Response(serializer.data,status=status.HTTP_200_OK)

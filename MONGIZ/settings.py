@@ -47,14 +47,16 @@ INSTALLED_APPS = [
     'rest_framework',
     'account.apps.AccountConfig',
     'Education.apps.EducationConfig',
+    'Education_Certificate.apps.EducationCertificateConfig',
     'Health.apps.HealthConfig',
+    'Medical_History.apps.MedicalHistoryConfig',
     'Home.apps.HomeConfig',
     'Official_Paper.apps.OfficialPaperConfig',
     'Social.apps.SocialConfig',
     'Work.apps.WorkConfig',
     'Tecnical_Report.apps.TecnicalReportConfig',
     'Certificates.apps.CertificatesConfig',
-    # 'Reniew_Requests.apps.ReniewRequestsConfig',
+    'Reniew_Requests.apps.ReniewRequestsConfig',
     'Messages.apps.MessagesConfig',
     'Reports.apps.ReportsConfig'
 ]

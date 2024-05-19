@@ -1,14 +1,10 @@
 from django.db import models
 from Social.models import social_state
 from account.models import User
-class papers(models.Model):
-    ID_number = User.national_id
-    Name = social_state.Name
-    Bith_cirtification = models.ImageField()
-    ID_card = social_state.Personel_Card
-    Passport = models.ImageField(upload_to='Passport_Photo/%y/%m/%d')
-    Driving_Licence = models.ImageField()
-
-    def __str__(self):
-     return f"{self.Name}"
+class paper(models.Model):
+    User=models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
+    Birth_cirtification = models.ImageField(upload_to='offcial_papers/Birth_cirtification/%y/%m/%d')
+    Id_Card = models.ImageField(upload_to='offcial_papers/Id_Card_Photo/%y/%m/%d')
+    Passport = models.ImageField(upload_to='offcial_papers/Passport_Photo/%y/%m/%d')
+    Driving_Licence = models.ImageField(upload_to='offcial_papers/Driving_Licence_Photo/%y/%m/%d')
     

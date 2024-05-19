@@ -1,21 +1,16 @@
 from django.db import models
-
-# Create your models here.
-from django.db import models
-
-
+from account.models import User
 # Create your models here.
 
 class educational_state (models.Model):
-    id_number = models.CharField(max_length=14, default=None)
-    name = models.CharField(max_length=200, default=None)
-    Schools = models.CharField(max_length=200, default=None)
-    University = models.CharField(max_length=200, default=None)
+    User=models.OneToOneField(User,on_delete=models.CASCADE,default=None,primary_key=True)
+    Name = models.CharField(max_length=200, default=None)
+    Schools = models.CharField(max_length=200, default=None,null=False,blank=False)
+    Faculty= models.CharField(max_length=200, default=None,null=True,blank=True)
+    University = models.CharField(max_length=200, default=None,null=True,blank=True)
 
-def __str__(self):
-    return f"{self.name}"
+    def __str__(self):
+      return self.Name
 
-class certification(models.Model):
-    Degree = models.CharField(max_length=100 , default=None)
-    certification = models.ImageField(null=True)  ##don't forget to create an image file
+
 
