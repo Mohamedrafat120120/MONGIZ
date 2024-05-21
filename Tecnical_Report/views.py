@@ -14,6 +14,8 @@ class report(APIView):
     permission_classes=[IsAuthenticated]
     def post(self, request):
         data = request.data
+        user=request.user
+        data['Sender']=user.pk
         serializer = ReportSerialize(data=data)  
         if serializer.is_valid():
             serializer.save()

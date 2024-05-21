@@ -18,8 +18,8 @@ class blood(models.TextChoices):
       
     
 class Personal_ID_Card(models.Model):
-    Sender=models.OneToOneField(User,related_name='sender_reniew_id',on_delete=models.CASCADE,default=None)
-    Full_Name=models.CharField(max_length=255,default=None,blank=False,null=False)
+    Sender=models.OneToOneField(User,on_delete=models.CASCADE)
+    Full_Name=models.CharField(max_length=255,blank=False,null=False)
     Birth_dt=models.DateField(blank=False,null=False)
     Full_Address=models.CharField(max_length=255,default=None)
     National_ID=models.CharField(max_length=15,default=None,blank=False,null=False)
@@ -29,10 +29,11 @@ class Personal_ID_Card(models.Model):
     Recent_Personal_Image=models.ImageField(upload_to='Reniew_ID_Photo/%y/%m/%d')
     Request_Date=models.DateField(auto_now_add=True)
     Receive_Date=models.DateField()
-    def __int__(self):
-        return self.pk
+    def __str__(self):
+        return self.Sender.national_id
+  
 class Personal_Driving_License(models.Model):
-    Sender=models.OneToOneField(User,related_name='sender_driving_license',on_delete=models.CASCADE,default=None)
+    Sender=models.OneToOneField(User,on_delete=models.CASCADE)
     Name_in_Arabic=models.CharField(max_length=255,default=None,blank=False,null=False)
     Name_in_English=models.CharField(max_length=255,blank=False,null=False)
     Full_Address=models.CharField(max_length=255,default=None)
@@ -44,10 +45,10 @@ class Personal_Driving_License(models.Model):
     Blood_Type=models.CharField(max_length=13,choices=blood.choices,blank=False,null=False)
     Medical_Examine_Image=models.ImageField(upload_to='Reniew_Driving_License_Photo/Medical_Examine/%y/%m/%d')
     Request_Date=models.DateField(auto_now=True)
-    Receive_Date=models.DateField()
+    Receive_Date=models.DateField(default='2024-7-18')
     
-    def __int__(self):
-        return self.pk
+    def __str__(self):
+        return self.Sender.national_id
     
     
     

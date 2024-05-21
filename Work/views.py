@@ -12,16 +12,13 @@ class work(APIView):
     def post(self,request):
         data=request.data
         user=request.user
-        if user:
-          Sender=work_career.objects.create(Sender=user)
-          serializer=WorkSerializer(data=data)
-          if serializer.is_valid():
-            Sender.save()
+        data['Sender']=user.pk
+        serializer=WorkSerializer(data=data)
+        if serializer.is_valid():
             serializer.save()
             return Response({"msg":"data sent","data":serializer.data},status=status.HTTP_200_OK)
-          else:
-             return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
         else:
-            return None 
+             return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+      
              
         

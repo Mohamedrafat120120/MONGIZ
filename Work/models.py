@@ -8,5 +8,5 @@ class work_career(models.Model):
     Other = models.TextField(default=None)
 
     def __str__(self):
-      return self.Sender.first_name
+      return self.Sender.national_id
     

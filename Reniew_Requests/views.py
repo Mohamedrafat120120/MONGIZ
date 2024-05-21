@@ -10,26 +10,32 @@ class personal_id_card(APIView):
     permission_classes=[IsAuthenticated]
     def post (self,request):
             data=request.data
-            # user_id=request.user.id
-            # user=get_object_or_404(User,pk=user_id)
-            serialize=PersonalIDSerialization(data=data)
-            if serialize.is_valid():
-                # Sender=Personal_ID_Card.objects.create(user=user)
-                # Sender.save()
-                serialize.save()
-                return Response(serialize.data,status=status.HTTP_201_CREATED)
-            else:
+            user=request.user
+            if data['National_ID']==user.national_id:
+              data['Sender']=user.pk
+              serialize=PersonalIDSerialization(data=data)
+              if serialize.is_valid():
+                 serialize.save()
+                 return Response(serialize.data,status=status.HTTP_201_CREATED)
+              else:
                    return Response(serialize.errors,status=status.HTTP_403_FORBIDDEN)
+            else:
+                return Response({"msg":"National_id doesnt match"})    
                
 class personal_driving_license(APIView):
     permission_classes=[IsAuthenticated]
     def post (self,request):
+            user=request.user
             data=request.data
-            serialize=PersonalDrivingLicenseSerialization(data=data)
-            if serialize.is_valid():
-                serialize.save()
-                return Response(serialize.data,status=status.HTTP_201_CREATED)
-            else:
+            if data['National_ID']==user.national_id:    
+              data['Sender']=user.pk
+              serialize=PersonalDrivingLicenseSerialization(data=data)
+              if serialize.is_valid():
+                 serialize.save()
+                 return Response(serialize.data,status=status.HTTP_201_CREATED)
+              else:
                    return Response(serialize.errors,status=status.HTTP_403_FORBIDDEN)
+            else:
+                return Response({"msg":"National_id doesnt match"})   
     
             
