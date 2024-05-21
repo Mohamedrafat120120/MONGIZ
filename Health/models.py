@@ -20,8 +20,8 @@ class health_state (models.Model):
     Blood_Quarter = models.CharField(max_length=3, choices=Blood_type.choices, default=None)
     Health_Problem = models.TextField(max_length=500, default=None,null=True,blank=True)
 
-    def __int__(self):
-      return self.Name
+    def national_id(self):
+        return f"{self.User.national_id}"
 
 
 

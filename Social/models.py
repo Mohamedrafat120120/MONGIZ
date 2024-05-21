@@ -13,6 +13,8 @@ class social_state(models.Model):
     Marital_state = models.CharField(max_length= 10, choices=MaritalState.choices, default=MaritalState.SINGLE)
     Phone_Number = models.CharField(max_length=11, default=None,unique=True,null=False,blank=False)
     Address = models.CharField(max_length=40,default=None,null=False,blank=False)
+    def national_id(self):
+        return f"{self.User.national_id}"
 
     
 
@@ -24,6 +26,8 @@ class Family(models.Model):
     Sons_Name3 = models.CharField(max_length=100, default=None,null=True,blank=True)
     Sons_Name4 = models.CharField(max_length=100, default=None,null=True,blank=True)
     Sons_Number = models.IntegerField(null=True,blank=True)
+    def national_id(self):
+        return f"{self.User.national_id}"
 
 
 

@@ -39,7 +39,6 @@ urlpatterns = [
     path('',include('Certificates.urls')),
     path('',include('Reniew_Requests.urls')),
     path('',include('Messages.urls')),
-    path('',include('Reports.urls'))
 ]
 
 

@@ -27,7 +27,6 @@ class Home_page(models.Model):
     Address = models.CharField(max_length=40, default=None)
     BirthDate = models.DateField()
 
-    def __str__(self):
-      return self.Name
-
+    def national_id(self):
+        return f"{self.User.national_id}"
 

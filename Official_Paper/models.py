@@ -7,4 +7,5 @@ class paper(models.Model):
     Id_Card = models.ImageField(upload_to='offcial_papers/Id_Card_Photo/%y/%m/%d')
     Passport = models.ImageField(upload_to='offcial_papers/Passport_Photo/%y/%m/%d')
     Driving_Licence = models.ImageField(upload_to='offcial_papers/Driving_Licence_Photo/%y/%m/%d')
-    
+    def national_id(self):
+        return f"{self.User.national_id}"

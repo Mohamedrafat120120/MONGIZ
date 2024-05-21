@@ -9,8 +9,8 @@ class educational_state (models.Model):
     Faculty= models.CharField(max_length=200, default=None,null=True,blank=True)
     University = models.CharField(max_length=200, default=None,null=True,blank=True)
 
-    def __str__(self):
-      return self.Name
+    def national_id(self):
+        return f"{self.User.national_id}"
 
 
 
