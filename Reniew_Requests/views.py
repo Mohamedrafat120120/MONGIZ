@@ -16,7 +16,7 @@ class personal_id_card(APIView):
               serialize=PersonalIDSerialization(data=data)
               if serialize.is_valid():
                  serialize.save()
-                 return Response(serialize.data,status=status.HTTP_201_CREATED)
+                 return Response({"msg":"Your request sent","Your request":serialize.data},status=status.HTTP_201_CREATED)
               else:
                    return Response(serialize.errors,status=status.HTTP_403_FORBIDDEN)
             else:
@@ -32,7 +32,7 @@ class personal_driving_license(APIView):
               serialize=PersonalDrivingLicenseSerialization(data=data)
               if serialize.is_valid():
                  serialize.save()
-                 return Response(serialize.data,status=status.HTTP_201_CREATED)
+                 return Response({"msg":"Your request sent","Your request":serialize.data},status=status.HTTP_201_CREATED)
               else:
                    return Response(serialize.errors,status=status.HTTP_403_FORBIDDEN)
             else:
