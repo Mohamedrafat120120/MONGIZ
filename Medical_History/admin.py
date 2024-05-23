@@ -4,4 +4,4 @@ from .models import *
 class display_medical_history(admin.ModelAdmin):
     list_display=['Name','national_id','Age','Chronic_Diseases']
     list_display_links=['Name','national_id','Age','Chronic_Diseases']
-admin.site.register(medical_history,display_medical_history)
+admin.site.register(medicalhistory,display_medical_history)

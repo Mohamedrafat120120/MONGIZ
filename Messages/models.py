@@ -7,4 +7,4 @@ class message(models.Model):
     Content = models.TextField(max_length=300, default=None)
 
     def __str__(self):
-        return self.Header
+        return self.User.national_id

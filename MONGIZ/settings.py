@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'Social.apps.SocialConfig',
     'Work.apps.WorkConfig',
     'Tecnical_Report.apps.TecnicalReportConfig',
-    # 'Certificates.apps.CertificatesConfig',
+    'certificates.apps.CertificatesConfig',
     'Reniew_Requests.apps.ReniewRequestsConfig',
     'Messages.apps.MessagesConfig',
     'Reports.apps.ReportsConfig'

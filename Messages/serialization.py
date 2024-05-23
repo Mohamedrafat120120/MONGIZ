@@ -5,4 +5,4 @@ from .models import *
 class msg_serializer(serializers.ModelSerializer):
     class Meta:
         model = message
-        fields = '__all__'
+        fields = ['Header','Content']

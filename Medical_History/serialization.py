@@ -3,5 +3,5 @@ from .models import *
 
 class medicalhistoryserialization(serializers.ModelSerializer):
     class Meta:
-        model = medical_history
-        fields='__all__'
+        model = medicalhistory
+        fields=['Name','Age','Chronic_Diseases','Another_Diseases']

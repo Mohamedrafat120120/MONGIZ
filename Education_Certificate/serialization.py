@@ -5,4 +5,4 @@ from .models import *
 class certification_serializer(serializers.ModelSerializer):
     class Meta:
         model = certification
-        fields = '__all__'
+        fields = ['Degree','certification']

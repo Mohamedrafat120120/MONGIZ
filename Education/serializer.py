@@ -4,6 +4,5 @@ from Education.models import educational_state
 class educational_state_serializer(serializers.ModelSerializer):
     class Meta:
         model = educational_state 
-        fields = '__all__'
-    
+        fields = ['Name','Schools','Faculty','University']
 

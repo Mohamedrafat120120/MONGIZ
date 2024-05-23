@@ -4,4 +4,4 @@ from Official_Paper.models import paper
 class papersSerializer(serializers.ModelSerializer):
     class Meta:
         model = paper
-        fields = '__all__'
+        fields = ['Birth_cirtification','Id_Card','Passport','Driving_Licence']

@@ -10,6 +10,6 @@ class medical_history(APIView):
     permission_classes = (IsAuthenticated,)
     def get(self,request):
         user = request.user
-        data=get_object_or_404(medical_history,User=user)
+        data=get_object_or_404(medicalhistory,User=user)
         serialize=medicalhistoryserialization(data)
         return Response(serialize.data,status=status.HTTP_200_OK)
