@@ -5,6 +5,7 @@ from django.utils.encoding import smart_str,force_bytes,DjangoUnicodeDecodeError
 from django.utils.http import  urlsafe_base64_encode,urlsafe_base64_decode
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from account.utils import *
+from django.contrib.auth.hashers import make_password
 class registerationserialization(serializers.ModelSerializer):
     
     class Meta:
@@ -20,9 +21,16 @@ class registerationserialization(serializers.ModelSerializer):
             'birth_dt':{'required':True,},
         }
 class loginserialize(serializers.ModelSerializer):
+    national_id=serializers.CharField(max_length=15)
     class Meta:
         model=User
-        fields=['national_id','password',]        
+        fields=['national_id','password']
+        extra_kwargs={
+            
+            'national_id':{'required':True,'min_length':13},
+            
+        }
+                
 
 class profileserializer(serializers.ModelSerializer):
     class Meta:
@@ -40,10 +48,12 @@ class changepasswordserialize(serializers.ModelSerializer):
         password2=attrs.get('password2')
         user=self.context.get('user')
         if password !=password2:
-            raise serializers.ValidationError({"Password doesn't match"})  
-        user.set_password(password)
+            raise serializers.ValidationError({"Password doesn't match"}) 
+        hash_password=make_password(password) 
+        user.set_password(hash_password)
         user.save()
-        return  attrs      
+        return  attrs   
+       
 class sendpasswordresetemailserialize(serializers.ModelSerializer):
     email=serializers.EmailField(max_length=255)
     class Meta:

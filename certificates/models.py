@@ -97,11 +97,11 @@ class Education(models.Model):
           
 class Technical_Skill(models.Model):      
      Sender=models.OneToOneField(User,on_delete=models.CASCADE)
-     Skill1=models.CharField(max_length=50,choices=Skills.choices,unique=True)
-     Skill2=models.CharField(max_length=50,choices=Skills.choices,unique=True)
-     Skill3=models.CharField(max_length=50,choices=Skills.choices,unique=True)
-     Skill4=models.CharField(max_length=50,choices=Skills.choices,unique=True)
-     Skill5=models.CharField(max_length=50,choices=Skills.choices,unique=True)
+     Skill1=models.CharField(max_length=50,choices=Skills.choices)
+     Skill2=models.CharField(max_length=50,choices=Skills.choices)
+     Skill3=models.CharField(max_length=50,choices=Skills.choices)
+     Skill4=models.CharField(max_length=50,choices=Skills.choices)
+     Skill5=models.CharField(max_length=50,choices=Skills.choices)
      def national_id(self) -> str:
         return f'{self.Sender.national_id}'
      
