@@ -5,7 +5,7 @@ from account.models import User
 from django.db import models
 
 class Report(models.Model):
-    Sender=models.OneToOneField(User,on_delete=models.CASCADE)
+    Sender=models.OneToOneField(User,on_delete=models.PROTECT)
     Name = models.CharField(max_length=200, default='',null=False,blank=False)
     Complaints = models.TextField()
 

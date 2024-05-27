@@ -59,7 +59,7 @@ class state(models.TextChoices):
      
     
 class Personal_Info(models.Model):
-    Sender=models.OneToOneField(User,on_delete=models.CASCADE)
+    Sender=models.OneToOneField(User,on_delete=models.PROTECT)
     Full_Name=models.CharField(max_length=100,default=" ",null=False,blank=False)
     Email=models.EmailField(unique=True,default=" ")
     Profession=models.CharField(max_length=100,default=" ",null=False,blank=False)
@@ -71,7 +71,7 @@ class Personal_Info(models.Model):
     
     
 class Expereince(models.Model):
-       Sender=models.OneToOneField(User,on_delete=models.CASCADE)
+       Sender=models.OneToOneField(User,on_delete=models.PROTECT)
        Company=models.CharField(max_length=100,default=" ",null=False,blank=False)
        Employer=models.CharField(max_length=100,default=" ",null=False,blank=False)
        Role=models.CharField(max_length=100,default=" ",null=False,blank=False)
@@ -85,7 +85,7 @@ class Expereince(models.Model):
        
         
 class Education(models.Model):
-    Sender=models.OneToOneField(User,on_delete=models.CASCADE)
+    Sender=models.OneToOneField(User,on_delete=models.PROTECT)
     School_Name=models.CharField(max_length=100,default=" ",null=False,blank=False)
     School_Location=models.CharField(max_length=100,default=" ",null=False,blank=False) 
     Degree_Program=models.CharField(max_length=100,default=" ",null=False,blank=False)      
@@ -96,7 +96,7 @@ class Education(models.Model):
       
           
 class Technical_Skill(models.Model):      
-     Sender=models.OneToOneField(User,on_delete=models.CASCADE)
+     Sender=models.OneToOneField(User,on_delete=models.PROTECT)
      Skill1=models.CharField(max_length=50,choices=Skills.choices)
      Skill2=models.CharField(max_length=50,choices=Skills.choices)
      Skill3=models.CharField(max_length=50,choices=Skills.choices)
@@ -106,7 +106,7 @@ class Technical_Skill(models.Model):
         return f'{self.Sender.national_id}'
      
 class Contact_Info(models.Model):
-      Sender=models.OneToOneField(User,on_delete=models.CASCADE)
+      Sender=models.OneToOneField(User,on_delete=models.PROTECT)
       Phone_Number=models.CharField(max_length=11)   
       Linkedin_Profile_Link=models.URLField(max_length=100,default="https/",null=False,blank=False,unique=True)    
       Twitter_Profile_Link=models.URLField(max_length=100,default="https/",null=False,blank=False,unique=True)    

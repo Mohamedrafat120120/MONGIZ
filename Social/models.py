@@ -8,8 +8,8 @@ class MaritalState(models.TextChoices):
     WIDOWED =  'Widowed'
 
 class social_state(models.Model):
-    User=models.OneToOneField(User,on_delete=models.CASCADE,default=None,primary_key=True)
-    Personel_Card = models.ImageField(upload_to='Social/social_state/Personel_Card/%y/%m/%d')
+    User=models.OneToOneField(User,on_delete=models.PROTECT,default=None,primary_key=True)
+    Personel_Card = models.ImageField(upload_to='social_state/Personel_Card/%y/%m/%d')
     Marital_state = models.CharField(max_length= 10, choices=MaritalState.choices, default=MaritalState.SINGLE)
     Phone_Number = models.CharField(max_length=11, default=None,unique=True,null=False,blank=False)
     Address = models.CharField(max_length=40,default=None,null=False,blank=False)
@@ -19,7 +19,7 @@ class social_state(models.Model):
     
 
 class Family(models.Model):
-    User=models.OneToOneField(User,on_delete=models.CASCADE,default=None,primary_key=True)
+    User=models.OneToOneField(User,on_delete=models.PROTECT,default=None,primary_key=True)
     Husband_or_Wife_Name = models.CharField(max_length=200, default=None)
     Sons_Name1 = models.CharField(max_length=100, default=None,null=True,blank=True)
     Sons_Name2 = models.CharField(max_length=100, default=None,null=True,blank=True)

@@ -27,7 +27,7 @@ def recieve_date(date_now):
     return  y      
     
 class Personal_ID_Card(models.Model):
-    Sender=models.OneToOneField(User,on_delete=models.CASCADE)
+    Sender=models.OneToOneField(User,on_delete=models.PROTECT)
     Full_Name=models.CharField(max_length=255,blank=False,null=False)
     Birth_dt=models.DateField(blank=False,null=False)
     Full_Address=models.CharField(max_length=255,default=None)
@@ -42,7 +42,7 @@ class Personal_ID_Card(models.Model):
         return self.Sender.national_id
   
 class Personal_Driving_License(models.Model):
-    Sender=models.OneToOneField(User,on_delete=models.CASCADE)
+    Sender=models.OneToOneField(User,on_delete=models.PROTECT)
     Name_in_Arabic=models.CharField(max_length=255,default=None,blank=False,null=False)
     Name_in_English=models.CharField(max_length=255,blank=False,null=False)
     Full_Address=models.CharField(max_length=255,default=None)

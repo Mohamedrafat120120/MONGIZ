@@ -14,7 +14,7 @@ class Blood_type(models.TextChoices):
 
 
 class health_state (models.Model):
-    User=models.OneToOneField(User,on_delete=models.CASCADE,default=None,primary_key=True)
+    User=models.OneToOneField(User,on_delete=models.PROTECT,default=None,primary_key=True)
     Name = models.CharField(max_length=200, default=None)
     Age=models.IntegerField(null=False,blank=False)
     Blood_Quarter = models.CharField(max_length=3, choices=Blood_type.choices, default=None)
