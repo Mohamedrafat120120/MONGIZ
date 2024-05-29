@@ -20,6 +20,8 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 urlpatterns = [
@@ -40,6 +42,6 @@ urlpatterns = [
     path('',include('Reniew_Requests.urls')),
     path('',include('Messages.urls')),
     path('',include('Reports.urls'))
-]
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
