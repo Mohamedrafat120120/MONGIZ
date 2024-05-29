@@ -5,3 +5,6 @@ class WorkSerializer(serializers.ModelSerializer):
     class Meta:
         model = work_career
         fields = '__all__'
+    
+    
+        

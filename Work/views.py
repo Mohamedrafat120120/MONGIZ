@@ -1,6 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from .models import work_career
-from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
@@ -19,6 +18,14 @@ class work(APIView):
             return Response({"msg":"data sent","data":serializer.data},status=status.HTTP_200_OK)
         else:
              return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
-      
+
+
+class get_work(APIView):
+        permission_classes=[IsAuthenticated]     
+        def get(self,request):
+            user=request.user
+            data=get_object_or_404(work_career,Sender=user)
+            serialize=WorkSerializer(data)
+            return Response(serialize.data,status=status.HTTP_200_OK)
              
         
