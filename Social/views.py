@@ -13,7 +13,9 @@ class Social(APIView):
         user=request.user
         data = get_object_or_404(social_state,User=user)
         serialize = social_state_serializer(data)
-        return Response(serialize.data,status=status.HTTP_200_OK)
+        Image=serialize.data.get('Personel_Card')
+        url='https://mongiz.pythonanywhere.com/'+Image
+        return Response({"data":serialize.data,"Personel_Card_url":url},status=status.HTTP_200_OK)
     
 class Social_Family(APIView):
     permission_classes=[IsAuthenticated]
@@ -21,6 +23,7 @@ class Social_Family(APIView):
         user=request.user
         data = get_object_or_404(Family,User=user)
         serialize = Family_serializer(data)
+       
         return Response(serialize.data,status=status.HTTP_200_OK)
   
 
